@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: phoenix-aca
+metadata:
+  template: phoenix-aca@0.0.1-beta
+pipeline:
+  variables:
+    - HTACCESS
+hooks:
+  preprovision:
+    posix:
+      shell: sh
+      run: ./scripts/init.sh
+      interactive: true
+      continueOnError: false
+    windows:
+      shell: pwsh
+      run: ./scripts/init.ps1
+      interactive: true
+      continueOnError: false
+  postprovision:
+    posix:
+      shell: sh
+      run: ./scripts/post.sh
+      interactive: true
+      continueOnError: false
+    windows:
+      shell: pwsh
+      run: ./scripts/post.ps1
+      interactive: true
+      continueOnError: false
