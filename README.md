@@ -74,7 +74,7 @@ Follow these steps to deploy Phoenix to Azure:
    azd auth login
    ```
 
-1. Create a new azd environment:
+2. Create a new azd environment:
 
    ```shell
    azd env new
@@ -83,16 +83,19 @@ Follow these steps to deploy Phoenix to Azure:
    Enter a name that will be used for the resource group.
    This will create a new folder in the `.azure` folder, and set it as the active environment for any calls to `azd` going forward.
 
-1. Run this command to provision all the resources:
+3. Run this command to provision all the resources:
+
+   If you want your data to be persisted between deployments, you can set the `PERSISTENCE` environment variable to `true` before running the `provision` command.
 
    ```shell
+   # azd env set PERSISTENCE true
    azd provision
    ```
 
    This will create a new resource group, and create the Azure Container App and PostgreSQL Flexible server inside that group.
    It will use the `init.sh` and `post.sh` hooks to set up default secrets, and pass the necessary environment variables to the Azure Container App.
 
-1. Once the deployment is complete, you will see the URL for the Azure Container App in the output. You can open this URL in your browser to see the Phoenix web app.
+4. Once the deployment is complete, you will see the URL for the Azure Container App in the output. You can open this URL in your browser to see the Phoenix web app.
 
 ## Disclaimer
 

@@ -10,6 +10,12 @@
     },
     "htpasswd": {
       "value": "${HTACCESS}"
+    },
+    "databasePassword": {
+      "value": "${DB_PASSWORD}"
+    },
+    "persistence": {
+      "value": "${PERSISTENCE=false}"
     }
   }
 }

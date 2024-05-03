@@ -28,4 +28,5 @@ if not 'SECRET' in values:
     update_azd_env('SECRET', secret)
     values['SECRET'] = secret
     update_azd_env('HTACCESS', encrypt_password(values['SECRET'][0:32], values['SECRET'][32:]))
+    update_azd_env('DB_PASSWORD', values['SECRET'][16:48])
 
