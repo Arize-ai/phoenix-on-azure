@@ -72,7 +72,7 @@ module containerApp 'host/container-app.bicep' = {
       ? [
           {
             name: 'PHOENIX_SQL_DATABASE_URL'
-            value: 'postgresql://${postgresServer.outputs.fqdn}:5432/postgres?user=${databaseAdmin}&password=${databasePassword}'
+            value: 'postgresql://${postgresServer.outputs.fqdn}:5432/${databaseName}?user=${databaseAdmin}&password=${databasePassword}'
           }
         ]
       : []
