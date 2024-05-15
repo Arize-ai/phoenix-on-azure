@@ -2,10 +2,10 @@
 
 Phoenix provides MLOps and LLMOps insights at lightning speed with zero-config observability. Phoenix provides a notebook-first experience for monitoring your models and LLM Applications by providing:
 
-LLM Traces - Trace through the execution of your LLM Application to understand the internals of your LLM Application and to troubleshoot problems related to things like retrieval and tool execution.
-LLM Evals - Leverage the power of large language models to evaluate your generative model or application's relevance, toxicity, and more.
+- LLM Traces - Trace through the execution of your LLM Application to understand the internals of your LLM Application and to troubleshoot problems related to things like retrieval and tool execution.
+- LLM Evals - Leverage the power of large language models to evaluate your generative model or application's relevance, toxicity, and more.
 Embedding Analysis - Explore embedding point-clouds and identify clusters of high drift and performance degradation.
-RAG Analysis - Visualize your generative application's search and retrieval process to identify problems and improve your RAG pipeline.
+- RAG Analysis - Visualize your generative application's search and retrieval process to identify problems and improve your RAG pipeline.
 Structured Data Analysis - Statistically analyze your structured data by performing A/B analysis, temporal drift analysis, and more.
 
 Table of contents:
@@ -29,7 +29,7 @@ You can run this repo virtually by using GitHub Codespaces, which will open a we
 
 [![Open in GitHub Codespaces](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=brightgreen&logo=github)](https://codespaces.new/arize-ai/phoenix-on-azure)
 
-Once the codespace opens (this may take several minutes), open a terminal window.
+Once the Codespace opens (this may take several minutes), open a terminal window in the Codespace.
 
 ### VS Code Dev Containers
 
@@ -51,10 +51,10 @@ A related option is VS Code Dev Containers, which will open the project in your 
 3. Run this command to download the project code:
 
    ```shell
-   azd init -t phoenix-on-azure
+   azd init -t Arize-ai/phoenix-on-azure
    ```
 
-   Note that this command will initialize a git repository, so you do not need to clone this repository.
+   Note: this command will initialize a git repository, so you do not need to clone this repository.
 
 4. Create a Python virtual environment and install the required packages:
 
