@@ -162,5 +162,5 @@ cython_debug/
 .azure
 
 # Data for local tests
-data*
+data
 .data
