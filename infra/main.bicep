@@ -11,6 +11,7 @@ param prefix string = 'phoenix'
 
 param databaseName string = 'phoenix'
 param databaseAdmin string = 'phoenixadmin'
+@secure() 
 param databasePassword string
 
 module postgresServer 'database/flexibleserver.bicep' =
