@@ -2,12 +2,18 @@ param location string = resourceGroup().location
 param tags object = {}
 param htpasswd string
 
+@minLength(1)
+@maxLength(64)
+@description('Name to prefix all resources')
+param name string = 'phoenix'
+
 // param containerEnvId string
 
 param persistence bool = false
 param imageName string = 'docker.io/arizephoenix/phoenix:sql-11'
+var resourceToken = toLower(uniqueString(subscription().id, name, location))
 
-param prefix string = 'phoenix'
+var prefix = '${name}-${resourceToken}'
 
 param databaseName string = 'phoenix'
 param databaseAdmin string = 'phoenixadmin'

@@ -88,6 +88,7 @@ Follow these steps to deploy Phoenix to Azure:
    If you want your data to be persisted between deployments, you can set the `PERSISTENCE` environment variable to `true` before running the `provision` command.
 
    ```shell
+   azd config set alpha.resourceGroupDeployments on
    # azd env set PERSISTENCE true
    azd provision
    ```
