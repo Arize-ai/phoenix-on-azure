@@ -1,38 +1,19 @@
 {
     "name": "Phoenix on Azure",
-    "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
-    "build": {
-        "dockerfile": "Dockerfile",
-        "target": "dev"
-        },
-
-    // Use 'settings' to set *default* container specific settings.json values on container create.
-    // You can edit these settings after create using File > Preferences > Settings > Remote.
-    //"settings": {
-    //    "terminal.integrated.shell.linux": "/bin/bash"
-
-    // Use 'appPort' to create a container with published ports. If the port isn't working, be sure
-    // your server accepts connections from all interfaces (0.0.0.0 or '*'), not just localhost.
-    // "appPort": [],
-
-    // Uncomment the next line to run commands after the container is created.
-    // "postCreateCommand": "gcc -v",
-    
+    "image": "mcr.microsoft.com/devcontainers/python:dev-bullseye",
+    "features": {
+        "ghcr.io/azure/azure-dev/azd:latest": {}
+    },
     "customizations": {
         "vscode": {
-            // Add the IDs of extensions you want installed when the container is created in the array below.
             "extensions": [
                 "ms-azuretools.azure-dev",
                 "ms-azuretools.vscode-bicep",
-                "ms-vscode.vscode-node-azure-pack",
-                "ms-python.python",
-                "ms-azuretools.vscode-azurefunctions"
+                "ms-python.python"
             ]
         }
     },
-    "postCreateCommand": "python3 -m venv .venv",
-    "postAttachCommand": ". .venv/bin/activate",
-    "remoteUser": "vscode",
+    "postCreateCommand": "pip install --no-cache-dir -r requirements.txt",
     "hostRequirements": {
         "memory": "8gb"
     }
