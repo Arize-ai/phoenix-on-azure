@@ -4,9 +4,11 @@ param tags object = {}
 
 param containerEnvId string
 param htpasswd string
+@secure()
+param dbConnectionString string
 
-param env array = []
 param imageName string
+param env array = []
 
 resource containerApp 'Microsoft.App/containerApps@2022-11-01-preview' = {
   name: name
@@ -24,14 +26,15 @@ resource containerApp 'Microsoft.App/containerApps@2022-11-01-preview' = {
         targetPort: 80
         allowInsecure: false
       }
-      secrets: [
-        {
-          name: 'phoenix-auth'
-          value: htpasswd
-        }
-        {
-          name: 'nginx-conf'
-          value: '''
+      secrets: concat(
+        [
+          {
+            name: 'phoenix-auth'
+            value: htpasswd
+          }
+          {
+            name: 'nginx-conf'
+            value: '''
 server {
   listen       80;
   server_name  localhost;
@@ -51,8 +54,17 @@ server {
   }
 }
 '''
-        }
-      ]
+          }
+        ],
+        !empty(dbConnectionString)
+          ? [
+              {
+                name: 'db-connection-string'
+                value: dbConnectionString
+              }
+            ]
+          : []
+      )
     }
     template: {
       containers: [
@@ -73,7 +85,6 @@ server {
         {
           image: imageName
           name: name
-          env: env
           args: [
             '-m'
             'phoenix.server.main'
@@ -87,6 +98,17 @@ server {
             cpu: '1.5'
             memory: '3Gi'
           }
+          env: concat(
+            env,
+            !empty(dbConnectionString)
+              ? [
+                  {
+                    secretRef: 'db-connection-string'
+                    name: 'PHOENIX_SQL_DATABASE_URL'
+                  }
+                ]
+              : []
+          )
         }
       ]
       scale: {
