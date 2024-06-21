@@ -10,7 +10,7 @@ except ImportError:
     import bcrypt
 
 def update_azd_env(name, val):
-    subprocess.run(f"azd env set {name} '{val}'", shell=True)
+    subprocess.run(["azd", "env", "set", name, val])
 
 def encrypt_password(username, password):
      bcrypted = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt(rounds=12)).decode("utf-8")
