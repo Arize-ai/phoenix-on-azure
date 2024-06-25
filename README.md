@@ -49,7 +49,9 @@ You can run this template virtually by using GitHub Codespaces. The button will 
 4. Provision the Azure resources and deploy your code:
 
    ```shell
-   azd up
+   azd config set alpha.resourceGroupDeployments on
+   # azd env set PERSISTENCE true
+   azd provision
    ```
 
 5. To view the endpoint, follow the "Phoenix UI link"
@@ -77,7 +79,9 @@ A related option is VS Code Dev Containers, which will open the project in your 
 5. Provision the Azure resources and deploy your code:
 
    ```shell
-   azd up
+   azd config set alpha.resourceGroupDeployments on
+   # azd env set PERSISTENCE true
+   azd provision
    ```
 
 6. To view the endpoint, follow the "Phoenix UI link"
