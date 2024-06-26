@@ -8,7 +8,7 @@ param htpasswd string
 param name string = 'phoenix'
 
 param persistence bool = false
-param imageName string = 'docker.io/arizephoenix/phoenix:sql-11'
+param imageName string = 'docker.io/arizephoenix/phoenix:latest'
 var resourceToken = toLower(uniqueString(subscription().id, name, location))
 
 var prefix = '${name}-${resourceToken}'
