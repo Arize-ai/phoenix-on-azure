@@ -1,6 +1,6 @@
 param location string = resourceGroup().location
 param tags object = {}
-param htpasswd string
+param htpasswd string = ''
 
 @minLength(1)
 @maxLength(64)
@@ -16,7 +16,7 @@ var prefix = '${name}-${resourceToken}'
 param databaseName string = 'phoenix'
 param databaseAdmin string = 'phoenixadmin'
 @secure()
-param databasePassword string
+param databasePassword string = ''
 
 module postgresServer 'database/flexibleserver.bicep' = if (persistence) {
   name: 'postgresql'
