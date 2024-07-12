@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 PYTHON_CMD="python"
 
 if ! command -v python &> /dev/null
