@@ -38,7 +38,7 @@ You have a few options for getting started with this template. The quickest way 
 You can run this template virtually by using GitHub Codespaces. The button will open a web-based VS Code instance in your browser:
 
 1. Open the template (this may take several minutes)
-   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](placeholder)
+   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/arize-ai/phoenix-on-azure)
 2. Open a terminal window
 3. Sign into your Azure account:
 
@@ -68,7 +68,7 @@ A related option is VS Code Dev Containers, which will open the project in your 
 
 1. Start Docker Desktop (install it if not already installed)
 2. Open the project:
-   [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](placeholder)
+   [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/arize-ai/phoenix-on-azure)
 3. In the VS Code window that opens, once the project files show up (this may take several minutes), open a terminal window.
 4. Sign into your Azure account:
 
