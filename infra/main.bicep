@@ -7,7 +7,6 @@ param htpasswd string = ''
 @description('Name to prefix all resources')
 param name string = 'phoenix'
 
-param persistence bool = false
 param imageName string = 'docker.io/arizephoenix/phoenix:latest'
 var resourceToken = toLower(uniqueString(subscription().id, name, location))
 
@@ -18,7 +17,7 @@ param databaseAdmin string = 'phoenixadmin'
 @secure()
 param databasePassword string = ''
 
-module postgresServer 'database/flexibleserver.bicep' = if (persistence) {
+module postgresServer 'database/flexibleserver.bicep' = {
   name: 'postgresql'
   scope: resourceGroup()
   params: {
@@ -72,9 +71,7 @@ module containerApp 'host/container-app.bicep' = {
     containerEnvId: containerAppEnv.outputs.id
     imageName: imageName
     htpasswd: htpasswd
-    dbConnectionString: persistence
-      ? 'postgresql://${postgresServer.outputs.fqdn}:5432/${databaseName}?user=${databaseAdmin}&password=${databasePassword}'
-      : ''
+    dbConnectionString: 'postgresql://${postgresServer.outputs.fqdn}:5432/${databaseName}?user=${databaseAdmin}&password=${databasePassword}'
   }
 }
 

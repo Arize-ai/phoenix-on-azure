@@ -7,27 +7,28 @@ Phoenix provides MLOps and LLMOps insights at lightning speed with zero-config o
 
 ![Example Image](https://storage.googleapis.com/arize-assets/phoenix/assets/images/phoenix_azure_azd3.png)
 
-- LLM Traces - Trace through the execution of your LLM Application to understand the internals of your LLM Application and to troubleshoot problems related to things like retrieval and tool execution.
-- LLM Evals - Leverage the power of large language models to evaluate your generative model or application's relevance, toxicity, and more.
-  Embedding Analysis - Explore embedding point-clouds and identify clusters of high drift and performance degradation.
-- RAG Analysis - Visualize your generative application's search and retrieval process to identify problems and improve your RAG pipeline.
-  Structured Data Analysis - Statistically analyze your structured data by performing A/B analysis, temporal drift analysis, and more.
+-   LLM Traces - Trace through the execution of your LLM Application to understand the internals of your LLM Application and to troubleshoot problems related to things like retrieval and tool execution.
+-   LLM Evals - Leverage the power of large language models to evaluate your generative model or application's relevance, toxicity, and more.
+    Embedding Analysis - Explore embedding point-clouds and identify clusters of high drift and performance degradation.
+-   RAG Analysis - Visualize your generative application's search and retrieval process to identify problems and improve your RAG pipeline.
+    Structured Data Analysis - Statistically analyze your structured data by performing A/B analysis, temporal drift analysis, and more.
 
 ![Example Image](https://storage.googleapis.com/arize-assets/phoenix/assets/images/phoenix_azure_azd2.png)
-
-
 
 ![Example Image](https://storage.googleapis.com/arize-assets/phoenix/assets/images/phoenix_azure_azd2.png)
 
 Table of contents:
 
-- [Getting Started](#getting-started)
-  - [GitHub Codespaces](#github-codespaces)
-  - [VS Code Dev Containers](#vs-code-dev-containers)
-  - [Local environment](#local-environment)
-- [Guidance](#guidance)
-  - [Costs](#costs)
-- [Disclaimer](#disclaimer)
+- [Deploy Phoenix to Azure](#deploy-phoenix-to-azure)
+  - [Getting Started](#getting-started)
+    - [GitHub Codespaces](#github-codespaces)
+    - [VS Code Dev Containers](#vs-code-dev-containers)
+    - [Local Environment](#local-environment)
+      - [Prerequisites](#prerequisites)
+      - [Quickstart](#quickstart)
+  - [Guidance](#guidance)
+    - [Costs](#costs)
+  - [Disclaimer](#disclaimer)
 
 ## Getting Started
 
@@ -42,25 +43,24 @@ You can run this template virtually by using GitHub Codespaces. The button will 
 2. Open a terminal window
 3. Sign into your Azure account:
 
-   ```shell
-    azd auth login --use-device-code
-   ```
+    ```shell
+     azd auth login --use-device-code
+    ```
 
 4. Provision the Azure resources and deploy your code:
 
-   ```shell
-   azd config set alpha.resourceGroupDeployments on
-   # azd env set PERSISTENCE true
-   azd provision
-   ```
+    ```shell
+    azd config set alpha.resourceGroupDeployments on
+    azd provision
+    ```
 
 5. To view the endpoint, follow the "Phoenix UI link"
 
 6. Optionally, you can configure a CI/CD pipeline:
 
-   ```shell
-   azd pipeline config
-   ```
+    ```shell
+    azd pipeline config
+    ```
 
 ### VS Code Dev Containers
 
@@ -72,101 +72,91 @@ A related option is VS Code Dev Containers, which will open the project in your 
 3. In the VS Code window that opens, once the project files show up (this may take several minutes), open a terminal window.
 4. Sign into your Azure account:
 
-   ```shell
-    azd auth login
-   ```
+    ```shell
+     azd auth login
+    ```
 
 5. Provision the Azure resources and deploy your code:
 
-   ```shell
-   azd config set alpha.resourceGroupDeployments on
-   # azd env set PERSISTENCE true
-   azd provision
-   ```
+    ```shell
+    azd config set alpha.resourceGroupDeployments on
+    azd provision
+    ```
 
 6. To view the endpoint, follow the "Phoenix UI link"
 
 7. Optionally, you can configure a CI/CD pipeline:
 
-   ```shell
-   azd pipeline config
-   ```
+    ```shell
+    azd pipeline config
+    ```
 
 ### Local Environment
 
 #### Prerequisites
 
-- [Azure Developer CLI](https://aka.ms/azure-dev/install)
-- [Python 3.9, 3.10, or 3.11](https://www.python.org/downloads/) (Only necessary if you want to enable authentication)
+-   [Azure Developer CLI](https://aka.ms/azure-dev/install)
+-   [Python 3.9, 3.10, or 3.11](https://www.python.org/downloads/) (Only necessary if you want to enable authentication)
 
 #### Quickstart
 
 1. Run this command to download the project code:
 
-   ```shell
-   azd init -t Arize-ai/phoenix-on-azure
-   ```
+    ```shell
+    azd init -t Arize-ai/phoenix-on-azure
+    ```
 
-   Note: this command will initialize a git repository, so you do not need to clone this repository.
+    Note: this command will initialize a git repository, so you do not need to clone this repository.
 
 2. Create a Python virtual environment and install the required packages:
 
-   ```shell
-   pip install -r requirements.txt
-   ```
+    ```shell
+    pip install -r requirements.txt
+    ```
 
 3. Sign into your Azure account:
 
-   ```shell
-    azd auth login
-   ```
+    ```shell
+     azd auth login
+    ```
 
 4. Create a new azd environment:
 
-   ```shell
-   azd env new
-   ```
+    ```shell
+    azd env new
+    ```
 
-   Enter a name that will be used for the resource group.
-   This will create a new folder in the `.azure` folder, and set it as the active environment for any calls to `azd` going forward.
+    Enter a name that will be used for the resource group.
+    This will create a new folder in the `.azure` folder, and set it as the active environment for any calls to `azd` going forward.
 
 5. Run this command to provision all the resources:
 
-   If you want your data to be persisted between deployments, you can set the `PERSISTENCE` environment variable to `true` before running the `provision` command.
+    ```shell
+    azd config set alpha.resourceGroupDeployments on
+    azd provision
+    ```
 
-   ```shell
-   azd config set alpha.resourceGroupDeployments on
-   # azd env set PERSISTENCE true
-   azd provision
-   ```
-
-   This will create a new resource group, and create the Azure Container App and PostgreSQL Flexible server inside that group.
-   It will use the `init.sh` and `post.sh` hooks to set up default secrets, and pass the necessary environment variables to the Azure Container App.
+    This will create a new resource group, and create the Azure Container App and PostgreSQL Flexible server inside that group.
+    It will use the `init.sh` and `post.sh` hooks to set up default secrets, and pass the necessary environment variables to the Azure Container App.
 
 6. In order to deploy this template, you will need to turn on the resource group scoped deployments alpha feature. [Learn more about azd's feature versioning strategy](https://learn.microsoft.com/azure/developer/azure-developer-cli/feature-versioning).
 
-   ```shell
-   azd config set alpha.resourceGroupDeployments on
-   ```
+    ```shell
+    azd config set alpha.resourceGroupDeployments on
+    ```
 
-7. If you want your data to be persisted between deployments, you can set the `PERSISTENCE` environment variable to `true` before running the `up` command:
+7. Provision and deploy the project to Azure:
 
-   ```shell
-   azd env set PERSISTENCE true
-   ```
+    ```shell
+    azd up
+    ```
 
-8. Provision and deploy the project to Azure:
+    This will create a new resource group, and create the Azure Container App and PostgreSQL Flexible server inside that group.
+    It will use the `init.sh` and `post.sh` hooks to set up default secrets, and pass the necessary environment variables to the Azure Container App.
 
-   ```shell
-   azd up
-   ```
+8. To view the endpoint, follow the "Phoenix UI link"
 
-   This will create a new resource group, and create the Azure Container App and PostgreSQL Flexible server inside that group.
-   It will use the `init.sh` and `post.sh` hooks to set up default secrets, and pass the necessary environment variables to the Azure Container App.
-
-9. To view the endpoint, follow the "Phoenix UI link"
-
-10. Optionally, you can configure a CI/CD pipeline:
+9. Optionally, you can configure a CI/CD pipeline:
 
     ```shell
     azd pipeline config
@@ -178,8 +168,8 @@ A related option is VS Code Dev Containers, which will open the project in your 
 
 You can estimate the cost of this project's architecture with [Azure's pricing calculator](https://azure.microsoft.com/pricing/calculator/)
 
-- Azure Container Apps - Consumption tier [pricing](https://azure.microsoft.com/pricing/details/container-apps/)
-- Azure Monitor - Pay-as-you-go tier [pricing](https://azure.microsoft.com/pricing/details/monitor/)
+-   Azure Container Apps - Consumption tier [pricing](https://azure.microsoft.com/pricing/details/container-apps/)
+-   Azure Monitor - Pay-as-you-go tier [pricing](https://azure.microsoft.com/pricing/details/monitor/)
 
 ## Disclaimer
 
