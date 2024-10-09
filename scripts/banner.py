@@ -29,7 +29,7 @@ print("""
 |  🚀 Phoenix Server 🚀
 |  Phoenix UI: https://{auth}@{endpoint}
 |  
-|  Instrument your code with environment variables set to
-|  PHOENIX_COLLECTOR_ENDPOINT=https://{auth}@{endpoint}
-|  COLLECTOR_ENDPOINT=https://{auth}@{endpoint}/v1/traces
+|  Instrument your code with:
+|  from phoenix.otel import register
+|  register(endpoint="https://{auth}@{endpoint}/v1/traces")
 """.format(auth=values['SECRET'][0:32]+":"+values['SECRET'][32:], endpoint=values['SERVICE_APP_URI'][8:]))
